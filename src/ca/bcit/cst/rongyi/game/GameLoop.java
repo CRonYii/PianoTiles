@@ -4,31 +4,37 @@ import ca.bcit.cst.rongyi.gui.Painter;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
- * GameLoop
+ * GameLoop is the loop of the game.
  *
  * @author Rongyi Chen
  * @version 2017
  */
 public class GameLoop implements Runnable {
+    /** The number of keys in the game. */
     public static final int KEYS = 4;
-    public static int framesPerSecond = 120;
+    /** frame rate of the game. */
+    private static int framesPerSecond = 60;
 
     private Grid grid;
     private Painter painter;
 
-    private final long interval;
+    /** interval is the time gap between each frame in milliseconds. */
+    private final long interval = 1000 / framesPerSecond;
 
-    private boolean running;
-    private boolean pause;
+    private boolean running = true;
+    private boolean pause = false;
 
+    /**
+     * Constructs an object of type GameLoop.
+     * 
+     * @param grid
+     *            the game grid
+     * @param context
+     *            the canvas context to draw on
+     */
     public GameLoop(Grid grid, GraphicsContext context) {
         this.grid = grid;
-        painter = new Painter(grid, context);
-
-        interval = 1000 / framesPerSecond;
-
-        running = true;
-        pause = false;
+        this.painter = new Painter(grid, context);
     }
 
     @Override
@@ -38,9 +44,12 @@ public class GameLoop implements Runnable {
         }
     }
 
+    /**
+     * Performs the game.
+     */
     private void perform() {
         long time = System.currentTimeMillis();
-
+        
         grid.update();
         painter.paint();
 
@@ -74,11 +83,30 @@ public class GameLoop implements Runnable {
         this.pause = pause;
     }
 
+    /**
+     * Let game pause if running, let game resume if is paused.
+     */
     public void togglePause() {
         pause = !pause;
         if (!pause) {
             (new Thread(this, "GameLoop")).start();
         }
+    }
+
+    /**
+     * Returns the framesPerSecond for this GameLoop.
+     * @return the framesPerSecond
+     */
+    public static int getFramesPerSecond() {
+        return framesPerSecond;
+    }
+
+    /**
+     * Sets the framesPerSecond for this GameLoop.
+     * @param framesPerSecond the framesPerSecond to set
+     */
+    public static void setFramesPerSecond(int framesPerSecond) {
+        GameLoop.framesPerSecond = framesPerSecond;
     }
 
 }

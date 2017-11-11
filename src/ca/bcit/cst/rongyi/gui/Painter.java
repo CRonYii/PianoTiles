@@ -1,10 +1,9 @@
 package ca.bcit.cst.rongyi.gui;
 
-import java.util.List;
-
 import ca.bcit.cst.rongyi.game.GameLoop;
 import ca.bcit.cst.rongyi.game.Grid;
 import ca.bcit.cst.rongyi.game.Tile;
+import ca.bcit.cst.rongyi.game.TileList;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -39,18 +38,19 @@ public class Painter {
         }
     }
 
-    private void paintTileList(List<Tile> list) {        
-       for (Tile t : list) {
+    private void paintTileList(TileList list) {
+        context.setFill(list.tileColor);
+        for (Tile t : list) {
             context.fillRect(
-                    t.getColumn() * grid.getSIZE_WIDTH(), 
+                    t.getColumn() * grid.getSIZE_WIDTH(),
                     t.getY() - grid.getSZIE_HEIGHT(),
-                    grid.getSIZE_WIDTH(), 
+                    grid.getSIZE_WIDTH(),
                     grid.getSZIE_HEIGHT());
-        } 
+        }
     }
-    
+
     private void paintTiles() {
-        for (List<Tile> list: grid.getTileLists()) {
+        for (TileList list : grid.getTileGrid().getTilesList()) {
             paintTileList(list);
         }
     }

@@ -10,22 +10,24 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * Main
+ * The main entry point of Piano Tiles.
  *
  * @author Rongyi Chen
  * @version 2017
  */
 public class Main extends Application {
 
-    private static final double SCALE = 2;
-    private static final int WIDTH = (int) ((192 * GameLoop.KEYS) / SCALE);
-    private static final int HEIGHT = (int) (1080.0 / SCALE);
+    private static final double SCALE = 1;
+    private static final int WIDTH = (int) ((96 * GameLoop.KEYS));
+    private static final int HEIGHT = (int) (1000.0 / SCALE);
 
     private GameLoop loop;
     private Grid grid;
     private GraphicsContext context;
 
     /**
+     * Runs the javaFX program.
+     * 
      * @see javafx.application.Application#start(javafx.stage.Stage)
      * @param primaryStage
      * @throws Exception
@@ -40,16 +42,20 @@ public class Main extends Application {
         canvas.setOnKeyPressed(e -> {
             switch (e.getCode()) {
             case S:
-                grid.removeTile(0);
+                if (!loop.isPause())
+                    grid.removeTile(0);
                 break;
             case D:
-                grid.removeTile(1);
+                if (!loop.isPause())
+                    grid.removeTile(1);
                 break;
             case K:
-                grid.removeTile(2);
+                if (!loop.isPause())
+                    grid.removeTile(2);
                 break;
             case L:
-                grid.removeTile(3);
+                if (!loop.isPause())
+                    grid.removeTile(3);
                 break;
             case P:
                 loop.togglePause();
@@ -70,6 +76,9 @@ public class Main extends Application {
         initialize();
     }
 
+    /**
+     * Initialize the game components.
+     */
     private void initialize() {
         grid = new Grid(WIDTH, HEIGHT);
         loop = new GameLoop(grid, context);
@@ -77,7 +86,10 @@ public class Main extends Application {
     }
 
     /**
+     * Drives the program.
+     * 
      * @param args
+     *            unused
      */
     public static void main(String[] args) {
         launch(args);
