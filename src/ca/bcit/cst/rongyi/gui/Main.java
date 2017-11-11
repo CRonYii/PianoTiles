@@ -1,10 +1,7 @@
 package ca.bcit.cst.rongyi.gui;
 
-import java.util.List;
-
 import ca.bcit.cst.rongyi.game.GameLoop;
 import ca.bcit.cst.rongyi.game.Grid;
-import ca.bcit.cst.rongyi.game.Tile;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -71,13 +68,12 @@ public class Main extends Application {
         primaryStage.show();
 
         initialize();
-
-        (new Thread(loop)).start();
     }
 
     private void initialize() {
         grid = new Grid(WIDTH, HEIGHT);
         loop = new GameLoop(grid, context);
+        (new Thread(loop, "GameLoop")).start();
     }
 
     /**

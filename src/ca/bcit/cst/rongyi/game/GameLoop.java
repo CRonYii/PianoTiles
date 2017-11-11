@@ -34,14 +34,11 @@ public class GameLoop implements Runnable {
 
     @Override
     public void run() {
-        while (running) {
-            while (!pause) {
-                perform();
-            }
+        while (running && !pause) {
+            perform();
         }
-        System.out.print("");
     }
-    
+
     private void perform() {
         long time = System.currentTimeMillis();
 
@@ -56,7 +53,7 @@ public class GameLoop implements Runnable {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }        
+        }
     }
 
     /**
@@ -80,6 +77,9 @@ public class GameLoop implements Runnable {
 
     public void togglePause() {
         pause = !pause;
+        if (!pause) {
+            (new Thread(this, "GameLoop")).start();
+        }
     }
 
 }
