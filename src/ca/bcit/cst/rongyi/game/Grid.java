@@ -69,6 +69,21 @@ public class Grid {
     }
 
     /**
+     * Remove the first tile in the appointed column, return true if succeed
+     * 
+     * @param column
+     *            int
+     * @return true if succeed, false otherwise
+     */
+    public boolean removeTile(int column) {
+        if (tileLists[column].size() != 0) {
+            tileLists[column].remove(0);
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Returns the width for this Grid.
      * 
      * @return the width
