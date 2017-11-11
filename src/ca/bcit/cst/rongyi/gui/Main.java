@@ -41,27 +41,21 @@ public class Main extends Application {
         context = canvas.getGraphicsContext2D();
         canvas.setFocusTraversable(true);
         canvas.setOnKeyPressed(e -> {
-            List<Tile>[] lists = grid.getTileLists();
             switch (e.getCode()) {
             case S:
-                if (lists[0].size() != 0) {
-                    lists[0].remove(0);
-                }
+                grid.removeTile(0);
                 break;
             case D:
-                if (lists[1].size() != 0) {
-                    lists[1].remove(0);
-                }
+                grid.removeTile(1);
                 break;
             case K:
-                if (lists[2].size() != 0) {
-                    lists[2].remove(0);
-                }
+                grid.removeTile(2);
                 break;
             case L:
-                if (lists[3].size() != 0) {
-                    lists[3].remove(0);
-                }
+                grid.removeTile(3);
+                break;
+            case P:
+                loop.togglePause();
                 break;
             default:
                 break;
