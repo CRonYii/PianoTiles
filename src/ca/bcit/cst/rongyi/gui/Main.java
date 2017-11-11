@@ -17,9 +17,9 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private static final double SCALE = 2.25;
-    private static final int WIDTH = (int) (900.0 / SCALE);
-    private static final int HEIGHT = (int) (1600.0 / SCALE);
+    private static final double SCALE = 2;
+    private static final int WIDTH = (int) ((192 * GameLoop.KEYS) / SCALE);
+    private static final int HEIGHT = (int) (1080.0 / SCALE);
 
     private GameLoop loop;
     private Grid grid;

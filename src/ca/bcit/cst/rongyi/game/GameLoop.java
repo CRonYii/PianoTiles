@@ -11,11 +11,11 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class GameLoop implements Runnable {
     public static final int KEYS = 4;
+    public static int framesPerSecond = 120;
 
     private Grid grid;
     private Painter painter;
 
-    private final int frameRate;
     private final long interval;
 
     private boolean running;
@@ -25,8 +25,7 @@ public class GameLoop implements Runnable {
         this.grid = grid;
         painter = new Painter(grid, context);
 
-        frameRate = 50;
-        interval = 1000 / frameRate;
+        interval = 1000 / framesPerSecond;
 
         running = true;
         pause = false;

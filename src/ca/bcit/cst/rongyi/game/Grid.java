@@ -31,7 +31,7 @@ public class Grid {
     @SuppressWarnings("unchecked")
     public Grid(int width, int height) {
         this.SIZE_WIDTH = width / GameLoop.KEYS;
-        this.SZIE_HEIGHT = (int) ((9.0 / 16.0) * this.SIZE_WIDTH);
+        this.SZIE_HEIGHT = (int) (this.SIZE_WIDTH / 5.0);
         this.width = width;
         this.height = height;
         this.generateTime = 200;
