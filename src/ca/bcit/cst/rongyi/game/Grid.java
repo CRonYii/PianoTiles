@@ -1,10 +1,7 @@
 package ca.bcit.cst.rongyi.game;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
+import ca.bcit.cst.rongyi.tiles.TileGrid;
+import ca.bcit.cst.rongyi.tiles.TileList;
 import javafx.scene.paint.Color;
 
 /**

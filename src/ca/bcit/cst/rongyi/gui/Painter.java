@@ -2,8 +2,8 @@ package ca.bcit.cst.rongyi.gui;
 
 import ca.bcit.cst.rongyi.game.GameLoop;
 import ca.bcit.cst.rongyi.game.Grid;
-import ca.bcit.cst.rongyi.game.Tile;
-import ca.bcit.cst.rongyi.game.TileList;
+import ca.bcit.cst.rongyi.tiles.Tile;
+import ca.bcit.cst.rongyi.tiles.TileList;
 import javafx.scene.canvas.GraphicsContext;
 
 /**

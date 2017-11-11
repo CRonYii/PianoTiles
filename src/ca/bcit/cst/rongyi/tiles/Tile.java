@@ -1,4 +1,6 @@
-package ca.bcit.cst.rongyi.game;
+package ca.bcit.cst.rongyi.tiles;
+
+import ca.bcit.cst.rongyi.game.GameLoop;
 
 /**
  * Tile is the piano tile.

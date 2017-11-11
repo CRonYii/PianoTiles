@@ -1,4 +1,4 @@
-package ca.bcit.cst.rongyi.game;
+package ca.bcit.cst.rongyi.tiles;
 
 import java.util.Iterator;
 import java.util.LinkedList;
