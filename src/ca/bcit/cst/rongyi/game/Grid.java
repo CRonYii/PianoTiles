@@ -1,10 +1,7 @@
 package ca.bcit.cst.rongyi.game;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
+import ca.bcit.cst.rongyi.tiles.TileGrid;
+import ca.bcit.cst.rongyi.tiles.TileList;
 import javafx.scene.paint.Color;
 
 /**
@@ -20,52 +17,40 @@ public class Grid {
     private final int width;
     private final int height;
 
-    private final long generateTime;
-    private long[] lastGenerated;
-
     public final Color BACKGROUND_COLOR = Color.SILVER;
     public final Color LINE_COLOR = Color.BLACK;
 
-    private List<Tile>[] tileLists;
+    private TileGrid tileGrid;
 
-    @SuppressWarnings("unchecked")
     public Grid(int width, int height) {
         this.SIZE_WIDTH = width / GameLoop.KEYS;
-        this.SZIE_HEIGHT = (int) ((9.0 / 16.0) * this.SIZE_WIDTH);
+        this.SZIE_HEIGHT = (int) (this.SIZE_WIDTH / 5.0);
+        
         this.width = width;
         this.height = height;
-        this.generateTime = 200;
-        this.tileLists = (List<Tile>[]) new List[GameLoop.KEYS];
-        for (int i = 0; i < GameLoop.KEYS; i++) {
-            tileLists[i] = new ArrayList<>();
-        }
-        this.lastGenerated = new long[GameLoop.KEYS];
+        
+        tileGrid = new TileGrid(height);
+        
     }
 
     public void update() {
-        generateTile();
-        for (int i = 0; i < GameLoop.KEYS; i++) {
-            Iterator<Tile> iterator = tileLists[i].iterator();
-            while (iterator.hasNext()) {
-                Tile temp = iterator.next();
-                temp.move();
-                if (temp.getY() >= height) {
-                    iterator.remove();
-                }
-            }
-        }
+        tileGrid.perform();
     }
 
-    private void generateTile() {
-        for (int i = 0; i < GameLoop.KEYS; i++) {
-            if (System.currentTimeMillis() - lastGenerated[i] > generateTime) {
-                Random rnd = new Random();
-                if (rnd.nextFloat() > 0.75) {
-                    tileLists[i].add(new Tile(i));
-                }
-                lastGenerated[i] = System.currentTimeMillis();
-            }
+    /**
+     * Remove the first tile in the appointed column, return true if succeed.
+     * 
+     * @param column
+     *            int
+     * @return true if succeed, false otherwise
+     */
+    public boolean removeTile(int column) {
+        TileList list = tileGrid.getTilesList()[column];
+        if (list.size() != 0) {
+            list.remove(0);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -104,13 +89,13 @@ public class Grid {
         return SZIE_HEIGHT;
     }
 
+
     /**
-     * Returns the tileList for this Grid.
-     * 
-     * @return the tileList
+     * Returns the tileGrid for this Grid.
+     * @return the tileGrid
      */
-    public List<Tile>[] getTileLists() {
-        return tileLists;
+    public TileGrid getTileGrid() {
+        return tileGrid;
     }
 
 }

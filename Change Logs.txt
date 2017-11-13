@@ -1,0 +1,5 @@
+[Version 0.01]
+ - First playable Version of Piano Tiles JavaFX
+ - Only 4K mode available; HotKeys are (S, D, K ,L)
+ - Game starts right away when program run
+ - Tiles are randomly generated
